@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-
+const BASE_URL="https://mdwaheed.dev"
 export default function Todo() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
@@ -10,7 +10,7 @@ export default function Todo() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/todo/get-tasks",
+          `${BASE_URL}/todo/get-tasks`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ export default function Todo() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/todo/create-tasks",
+        `${BASE_URL}/todo/create-tasks`,
         {
           task: text,
         },
@@ -53,7 +53,7 @@ export default function Todo() {
       const token = localStorage.getItem("token");
       const currentTodo = todos.find((t) => t._id === id); //finding the task that was clicked
       axios.patch(
-        `http://localhost:5000/todo/update-task${id}`,
+        `${BASE_URL}/todo/update-task${id}`,
         {
           status: !currentTodo.status,
         },
@@ -74,7 +74,7 @@ export default function Todo() {
   async function deleteTodo(id) {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/todo/delete-task/${id}`, {
+      await axios.delete(`${BASE_URL}/todo/delete-task/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

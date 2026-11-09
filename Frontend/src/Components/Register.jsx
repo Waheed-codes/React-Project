@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
+const BASE_URL="https://mdwaheed.dev"
 
 export default function Register() {
     const [email, setEmail] = useState("")
@@ -12,7 +13,7 @@ export default function Register() {
         e.preventDefault()
         try {
             const response = await axios.post(
-                "http://localhost:5000/user/register",
+                `${BASE_URL}/user/register`,
                 {
                     email: email,
                     password: password,

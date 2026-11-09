@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router"
 import { useState } from "react"
 import axios from "axios"
+const BASE_URL="https://mdwaheed.dev"
 export default function Login() {
 
     const [email, setEmail] = useState("")
@@ -13,7 +14,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/user/login",
+                `${BASE_URL}/user/login`,
                 {
                     email,
                     password
